@@ -14,6 +14,7 @@ body {
 }
 
 .header {
+  color: #fff;
   background-color: rgba(10, 10, 10, .05);
 }
 
@@ -52,19 +53,19 @@ body {
 }
 
 .form input:focus {
-  box-shadow: none !important;
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }
 
 .form input:focus+ul {
+  padding-bottom: 20px;
   display: block !important;
   background-color: #fff;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .form input+ul li {
-  padding: 0 20px;
+  padding: 10px;
 }
 
 .form input+ul li:hover {
@@ -85,8 +86,9 @@ h2, h3 {
 }
 
 @media screen and (max-width: 768px) {
+
   .form input,
-  .form input + ul {
+  .form input+ul {
     width: 100% !important;
   }
 }
