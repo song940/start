@@ -13,6 +13,10 @@ body {
   background-position: 50%;
 }
 
+.container {
+  background-color: transparent;
+}
+
 .header {
   color: #fff;
   background-color: rgba(10, 10, 10, .05);
