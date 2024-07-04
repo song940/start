@@ -1,0 +1,155 @@
+# Bookmarks
+- name: "Favorites"
+  links:
+    - title: Google
+      url: "/g"
+      icon: "https://google.com/favicon.ico"
+    - title: YouTube
+      url: "/yt"
+      icon: "https://youtube.com/favicon.ico"
+    - title: GitHub
+      url: "/gh"
+      icon: "https://github.com/favicon.ico"
+    - title: Twitter
+      url: "/t"
+      icon: "https://twitter.com/favicon.ico"
+    - title: Facebook
+      url: "/fb"
+      icon: "https://facebook.com/favicon.ico"
+    - title: V2EX
+      url: "https://v2ex.com"
+      icon: "https://v2ex.com/favicon.ico"
+
+- name: "Lsong’s Web"
+  links:
+    - title: Blog
+      url: "https://lsong.org/posts"
+    - title: Music
+      icon: "🎵"
+      url: "https://lsong.org/music"
+    - title: Books
+      icon: "📚"
+      url: "https://lsong.org/books"
+    - title: Weather
+      icon: "☁️"
+      url: "https://lsong.org/weather"
+    - title: Wi-Fi
+      icon: "📶"
+      url: "https://lsong.org/wifi"
+    - title: Notes
+      icon: "📝"
+      url: "https://lsong.org/notes"
+    - title: Maps
+      icon: "🗺️"
+      url: "https://lsong.org/maps"
+    - title: Translator
+      url: "https://lsong.org/translator"
+    - title: ChatGPT Demo
+      url: "https://lsong.org/chatgpt-demo"
+      icon: "https://lsong.org/gemini-nano/icon.svg"
+    - title: Ollama Demo
+      url: "https://lsong.org/ollama-demo"
+      icon: "https://github.com/jmorganca/ollama/assets/3325447/0d0b44e2-8f4a-4e99-9b52-a5c1c741c8f7"
+    - title: HAM Quiz
+      url: "https://lsong.org/ham-quiz"
+    - title: Gemini Nano
+      url: "https://lsong.org/gemini-nano"
+      icon: "https://lsong.org/gemini-nano/icon.svg"
+    - title: OTP Authenticator
+      url: "https://lsong.org/otp-authenticator"
+    - title: MQTT
+      url: "https://lsong.org/mqtt-demo"
+      icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-P9wZTR3S29NT6K3v_HIdXv91oMFVplsQRw&s"
+    - title: RSS Reader
+      icon: "📖"
+      url: "https://read.lsong.org"
+    - title: Bookmarklet Maker
+      url: https://lsong.org/bookmarklet-maker
+    - title: Greenlock
+      icon: "🔒"
+      url: https://lsong.org/greenlock
+    - title: Chat
+      icon: "💬"
+      url: https://lsong.org/chat
+    - title: Clash
+      icon: "🐱"
+      url: https://lsong.org/clash-demo
+    - title: WebESP
+      icon: "🔌"
+      url: https://lsong.org/webesp
+    - title: "Piano"
+      icon: "🎹"
+      url: https://lsong.org/piano
+    - title: "EAR-DRUMS"
+      icon: "🟩"
+      url: https://lsong.org/drumpad
+    - title: "Calendar"
+      icon: "📅"
+      url: https://lsong.org/calendar
+    - title: "Wallet"
+      icon: "💰"
+      url: https://lsong.org/wallet
+    - title: "Wenjuan"
+      icon: "📃"
+      url: https://lsong.org/wenjuan
+    - title: "MyIP"
+      icon: "🛜"
+      url: https://lsong.org/myip
+    - title: "Garbage Recycle"
+      icon: "🚮"
+      url: https://lsong.org/garbage-recycle
+    - title: "Poesy"
+      icon: "📖"
+      url: https://lsong.org/poesy
+
+
+- name: "Lsong’s Games"
+  links:
+    - title: "2048"
+      url: "https://lsong.org/2048"
+      icon: "https://play-lh.googleusercontent.com/bZregCeEpzMwRoocLnsYb4Te-vPPHkW1k5H1xsQ3qK9yE00fixpWu5fNsUz3ut2IiDHn"
+    - title: "Flyppy Bird"
+      url: "https://lsong.org/flyppy-bird"
+      icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZmeLlP3TsH1NJswuPTIdaqxNp33Gaw-LM5w&s"
+    - title: "合成大西瓜"
+      icon: "🍉"
+      url: "https://lsong.org/watermelon"
+    - title: "你比我猜"
+      url: "https://lsong.org/nibiwocai"
+    - title: "Dinosaur Game"
+      icon: "🦕"
+      url: "https://lsong.org/chromium-runner-game"
+    - title: "Mental Arithmetic Game"
+      icon: "🧠"
+      url: "https://lsong.org/math-game"
+    - title: "Snake Game"
+      icon: "🐍"
+      url: "https://lsong.org/snake-game"
+    - title: "Endless Space Shooter Game"
+      icon: "🔫"
+      url: "http://lsong.org/shooter-game"
+    - title: "INSIDE"
+      url: "https://playdead.com/games/inside"
+      icon: "https://images.dwncdn.net/images/t_app-icon-l/p/c6ad883d-3bec-4402-9e52-315324e31ba7/2821828490/7433_4-77776114-logo"
+    - title: "The Legend of Zelda: Breath of the Wild"
+      url: "https://lsong.org/notes/zelda/botw.html"
+      icon: "data:image/jpeg;base64,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"
+    - title: "The Legend of Zelda: Tears of the Kingdom"
+      url: "https://lsong.org/notes/zelda/totk.html"
+      icon: "data:image/jpeg;base64,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"
+    - title: "Little Nightmares"
+      url: "#"
+      icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP1h7oFv5ZV7l9yfMuGwXVmBxT1JNlaoDBDHkenT5HltbmlyYjn8tFpue5b5RrwN6OHlQ&usqp=CAU"
+
+- name: "Tools"
+  links:
+    - title: "ASCIIFlow Infinity"
+      url: "http://asciiflow.com/"
+    - title: "TinyPNG"
+      url: "https://tinypng.com"
+      icon: "https://tinypng.com/images/apple-touch-icon.png"
+    - title: "Graphviz Online"
+      url: "https://dreampuf.github.io/GraphvizOnline/"
+    - title: "Carbon"
+      url: "https://carbon.now.sh"
+      icon: "https://carbon.now.sh/static/brand/apple-touch-icon.png"

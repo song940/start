@@ -1,0 +1,29 @@
+{
+  "name": "Liu Song’s Start",
+  "short_name": "Start",
+  "description": "A simple personal bookmark navigation website and AI search engine.",
+  "id": "?id=start",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000",
+  "background_color": "#efefef",
+  "icons": [
+    {
+      "src": "https://lsong.org/icon-x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://lsong.org/icon-x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": [
+    "search",
+    "bookmarks",
+    "AI"
+  ]
+}

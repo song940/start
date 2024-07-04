@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Liu Song’s Start</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="A simple personal bookmark navigation website and AI search engine.">
+  <meta name="author" content="Lsong">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Liu Song’s Start">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@song940">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="https://lsong.org/icon.svg">
+  <link rel="apple-touch-icon" sizes="128x128" type="image/png" href="https://lsong.org/icon-x128.png">
+  <link rel="apple-touch-icon" sizes="512x512" type="image/png" href="https://lsong.org/icon-x512.png">
+  <link rel="stylesheet" href="app.css">
+  <script type="module" src="index.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <a href="/" class="heading">
+        <img src="https://lsong.org/icon.svg" alt="logo" class="logo" width="24">
+        <h1 class="title" prefix="Liu Song’s ">Start</h1>
+      </a>
+      <nav class="nav nav-bar">
+        <a href="//lsong.org">home</a>
+        <a href="//lsong.org/posts">blog</a>
+        <a href="//lsong.org/books">books</a>
+        <a href="//lsong.org/music">music</a>
+        <a href="//lsong.org/apps">apps</a>
+        <x-inbox></x-inbox>
+      </nav>
+      <hr />
+    </header>
+    <main class="content">
+
+      <section id="hello">
+        <h2>Hello 👋</h2>
+        <p class="headline">
+          Hi, I'm Liu Song, a full-stack developer with a passion for open-source software.
+          I have experience in web and mobile development, as well as a background in embedded systems and network
+          protocols.
+          I enjoy writing tech <a href="//lsong.org/posts">blogs</a> and developing <a
+            href="//go.lsong.org/#apps">applications</a> in my spare time.
+          Proficient in Node.js, Golang, and server operations, I'm always eager to learn more and contribute to the
+          community.
+          Check out my GitHub <a href="https://github.com/lsongdev">@lsongdev</a> for some of my projects and feel free
+          to
+          connect
+          with me to discuss ideas.
+          When I'm not coding, I enjoy listening to <a href="//lsong.org/music">music</a> and playing <a
+            href="//go.lsong.org/#game">games</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>Search</h2>
+        <form action="search.html" id="search" class="input-group width-full" enctype="text/plain">
+          <input type="hidden" name="model" value="gpt-4" />
+          <input name="q" type="search" class="input input-block" placeholder="Type keyword to search" autofocus>
+          <button type="submit" class="button button-primary">Search</button>
+        </form>
+      </section>
+
+      <section id="loading">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+      </section>
+
+      <section id="app"></section>
+
+      <hr />
+    </main>
+    <footer class="footer">
+      <h2>Subscribe</h2>
+      <p>Join our occasional newsletter for product launches, availability, job openings, and news:</p>
+      <form action="https://formspree.io/song940@gmail.com" method="post" class="input-group width-full">
+        <input class="input" type="email" id="email" name="email" required placeholder="email address">
+        <button class="button" type="submit">Submit</button>
+      </form>
+      <hr />
+      Liu Song
+      <address>
+        <a href="mailto:hi@lsong.org">hi@lsong.org</a>
+      </address>
+      <a href="https://lsong.org">https://lsong.org</a>
+    </footer>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+@import url(https://lsong.org/css/stylesheet.css);
+@import url(https://lsong.org/stylesheets/button.css);
+@import url(https://lsong.org/stylesheets/flex.css);
+
+#hello {
+  display: none;
+}
+
+ul.grid {
+  padding: 0;
+  list-style: none;
+}
+
+ul.grid li {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+ul.grid li:hover {
+  cursor: pointer;
+  background-color: #efefef;
+}
+
+ul.grid li a {
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+}
+
+
+.bookmarks li > a {
+  color: #333;
+}
+
+.bookmarks .link-icon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.search-results a {
+  display: block;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.search-results p {
+  margin: 0;
+}
+
+.search-results img,
+.related-questions img {
+  width: 1cap;
+  height: 1cap;
+  display: inline-block;
+  margin-right: 0.5cap;
+}
+
+.top-stories img {
+  width: 150px;
+  height: 100%;
+  min-width: 150px;
+  min-height: 80px;
+  max-width: 150px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.top-stories li {
+  gap: 10px;
+}
+
+.question {
+  color: red;
+}
+.question::before {
+  content: "Q: ";
+}
+
+.answer {
+  color: green;
+}
+
+.answer::before {
+  content: "A: ";
+}
+
+.overview {
+  overflow: hidden;
+}
+
+.overview sup a {
+  font-family: monospace;
+  text-decoration: none;
+}
+
+#loading p {
+  height: 2em;
+  background-color: #eee;
+}
