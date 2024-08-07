@@ -71,6 +71,9 @@
     - title: Chat
       icon: "💬"
       url: https://lsong.org/chat
+    - title: Clash
+      icon: "🐱"
+      url: https://lsong.org/clash-demo
 
 - name: "Lsong’s Games"
   links:

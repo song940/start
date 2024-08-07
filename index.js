@@ -2,54 +2,74 @@ import { ready } from 'https://lsong.org/scripts/dom.js';
 import * as yaml from 'https://lsong.org/scripts/yaml.js';
 import { h, render, useState, useEffect } from 'https://lsong.org/scripts/react/index.js';
 
-const renderLink = (link, index) => {
-  const colors = [
-    'rgb(249, 195, 141)',
-    'rgb(173, 255, 173)',
-    'rgb(255, 255, 203)',
-    'rgb(166, 197, 255)',
-    'rgb(244, 197, 242)',
-    'rgb(255, 174, 178)',
-  ];
-  const handleError = e => {
-    e.target.style.display = 'none';
-    e.target.nextSibling.style.display = 'flex';
-  };
-  const handleLoad = e => {
-    e.target.style.display = 'block';
-    e.target.nextSibling.style.display = 'none';
+const COLORS = [
+  'rgb(255, 179, 186)', // 浅粉红
+  'rgb(255, 223, 186)', // 浅橙色
+  'rgb(255, 255, 186)', // 浅黄色
+  'rgb(186, 255, 201)', // 浅绿色
+  'rgb(186, 225, 255)', // 浅蓝色
+  'rgb(223, 186, 255)', // 浅紫色
+  'rgb(255, 179, 255)', // 亮粉红
+  'rgb(179, 255, 255)', // 浅青色
+  'rgb(191, 207, 255)', // 淡蓝色
+  'rgb(204, 255, 204)', // 浅薄荷绿
+  'rgb(255, 230, 204)', // 浅杏色
+  'rgb(230, 230, 250)', // 薰衣草色
+  'rgb(255, 240, 245)', // 浅粉红褐色
+  'rgb(240, 248, 255)', // 爱丽丝蓝
+  'rgb(255, 250, 205)', // 柠檬绸色
+  'rgb(255, 228, 225)', // 薄雾玫瑰
+  'rgb(240, 255, 240)', // 蜜瓜色
+  'rgb(255, 255, 224)', // 浅黄色
+  'rgb(255, 218, 185)'  // 桃色
+];
+
+const LinkIcon = ({ link, index }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleLoad = () => setImageLoaded(true);
+  const handleError = () => setImageLoaded(false);
+  const isRes = /^(http|data)/.test(link.icon);
+
+  const getFallbackIcon = () => {
+    if (link.icon && !isRes)
+      return link.icon; // This is likely an emoji
+    return link.title[0]; // Fallback to first character of title
   };
 
-  return h('a', { className: 'link', href: link.url }, [
-    (link.icon && /^(http|data)/.test(link.icon)) && h('img', {
-      className: 'link-icon',
-      src: link.icon,
-      onLoad: handleLoad,
-      onError: handleError,
-      style: { display: 'none' },
-    }),
-    h('span', {
-      className: 'link-icon',
-      style: {
-        display: 'flex',
-        backgroundColor: colors[index % colors.length],
-      },
-    },
-      (!link.icon || /^(http|data)/.test(link.icon)) ? link.title[0] : link.icon),
-    link.title,
-  ]);
+  const fallbackIcon = h('span', {
+    className: 'link-icon',
+    style: {
+      display: imageLoaded ? 'none' : 'flex',
+      backgroundColor: COLORS[index % COLORS.length],
+    }
+  }, getFallbackIcon());
+
+  const imageIcon = link.icon && isRes && h('img', {
+    className: 'link-icon',
+    src: link.icon,
+    onLoad: handleLoad,
+    onError: handleError,
+    style: { display: imageLoaded ? 'block' : 'none' }
+  });
+  return [fallbackIcon, imageIcon];
 };
 
-const renderFolder = folder => {
-  return h('div', null,
+const Link = ({ link, index }) =>
+  h('a', { className: 'link', href: link.url }, [
+    h(LinkIcon, { link, index }),
+    link.title
+  ]);
+
+const Folder = ({ folder }) =>
+  h('div', null, [
     h('h3', null, folder.name),
     h('ul', { className: 'list' },
-      folder.links && folder.links.map((bookmark, index) =>
-        h('li', null, renderLink(bookmark, index))
+      folder.links?.map((bookmark, index) =>
+        h('li', { key: index }, h(Link, { link: bookmark, index }))
       )
     )
-  );
-}
+  ]);
 
 const fetchData = async () => {
   const response = await fetch('data.yaml');
@@ -61,13 +81,15 @@ const App = () => {
   const [bookmarks, setBookmarks] = useState([]);
 
   useEffect(() => {
-    fetchData().then(x => setBookmarks(x));
+    fetchData().then(setBookmarks);
   }, []);
 
-  return h('div', { className: 'bookmarks' },
-    h('h2', null, "Bookmarks"),
-    bookmarks.map((bookmark, index) => renderFolder(bookmark))
-  );
+  return h('div', { className: 'bookmarks' }, [
+    h('h2', null, 'Bookmarks'),
+    ...bookmarks.map((bookmark, index) =>
+      h(Folder, { key: index, folder: bookmark })
+    )
+  ]);
 };
 
 ready(() => {
