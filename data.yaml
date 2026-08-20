@@ -30,7 +30,7 @@
     - title: Mori
       category: Independent market
       description: A small marketplace for independent goods.
-      url: "https://shop.lsong.org"
+      url: "https://mori.lsong.org"
       icon: "🌿"
       theme: warm
     - title: Files
@@ -58,14 +58,14 @@
       description: One API for the AI models and SDKs you already know.
       url: "https://models.lsong.org"
       icon: "✦"
+    - title: Miya Agent
+      url: "https://miya.lsong.org"
+      icon: "https://raw.githubusercontent.com/lsongdev/miya-desktop/master/build/appicon.png"
     - title: Games
       category: Games
       description: A hand-picked collection of NES favorites, ready to play in your browser
       url: "https://lsong.org/games"
       icon: "🎮"
-
-- name: "Lsong’s Web"
-  links:
     - title: Blog
       url: "https://lsong.org/posts"
     - title: Music
@@ -170,6 +170,8 @@
       url: "https://lsong.org/daxigua"
     - title: "你比我猜"
       url: "https://lsong.org/nibiwocai"
+    - title: "密码破解"
+      url: "https://lsong.org/puzzle"
     - title: "Dinosaur Game"
       icon: "🦕"
       url: "https://lsong.org/chromium-runner-game"

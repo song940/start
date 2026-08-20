@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <title>Lsong’s Start</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Search the web and explore Lsong’s collection of useful links, apps, and experiments.">
+  <meta name="description"
+    content="Search the web and explore Lsong’s collection of useful links, apps, and experiments.">
   <meta name="author" content="Lsong">
   <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
@@ -17,23 +18,26 @@
   <meta name="twitter:creator" content="@lsongdev">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/png" href="https://lsong.org/assets/web/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" type="image/png" href="https://lsong.org/assets/web/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" type="image/png"
+    href="https://lsong.org/assets/web/apple-touch-icon.png">
   <link rel="stylesheet" href="app.css?v=19">
-  <script type="module" src="index.js?v=8"></script>
+  <script type="module" src="index.js?v=9"></script>
 </head>
 
 <body class="start-page">
   <a class="skip-link" href="#content">Skip to content</a>
 
   <header class="site-header navbar">
-    <a href="/" class="navbar-brand" aria-label="Lsong’s Start home">
-      <img class="navbar-brand-mark" src="https://lsong.org/assets/web/icon.png?v=2" alt="" aria-hidden="true" referrerpolicy="no-referrer">
+    <a href="/" class="navbar-brand" aria-label="Lsong’s Start">
+      <img class="navbar-brand-mark" src="https://lsong.org/assets/web/icon.png" alt="" aria-hidden="true"
+        referrerpolicy="no-referrer">
       <h1 class="title" prefix="Lsong’s ">Start</h1>
     </a>
     <nav aria-label="Main navigation">
       <a href="https://lsong.org">Home</a>
       <a href="https://lsong.org/posts">Writing</a>
-      <a href="https://lsong.org/start">Products</a>
+      <a href="https://lsong.org/games">Games</a>
+      <a href="https://lsong.org/music">Music</a>
       <a href="https://my.lsong.org">Account</a>
     </nav>
   </header>
@@ -46,10 +50,12 @@
 
       <form action="search.html" id="search" class="start-search input-group" enctype="text/plain">
         <label class="sr-only" for="search-input">Search the web or filter bookmarks</label>
-        <input name="q" type="search" id="search-input" class="input input-large" placeholder="Search the web or filter your links" autocomplete="off" autofocus>
+        <input name="q" type="search" id="search-input" class="input input-large"
+          placeholder="Search the web or filter your links" autocomplete="off" autofocus>
         <button type="submit" class="button button-primary button-large">Search</button>
       </form>
-      <p class="search-help"><span>Start typing to filter links</span><span><kbd>/</kbd> Focus</span><span><kbd>Esc</kbd> Clear</span></p>
+      <p class="search-help"><span>Start typing to filter links</span><span><kbd>/</kbd>
+          Focus</span><span><kbd>Esc</kbd> Clear</span></p>
     </section>
 
     <section class="directory" aria-labelledby="directory-title">
@@ -64,7 +70,8 @@
         </div>
       </header>
 
-      <div id="loading" class="loading-grid grid grid-cols-4 md-grid-cols-3 sm-grid-cols-2" role="status" aria-label="Loading bookmarks">
+      <div id="loading" class="loading-grid grid grid-cols-4 md-grid-cols-3 sm-grid-cols-2" role="status"
+        aria-label="Loading bookmarks">
         <span class="card"></span><span class="card"></span><span class="card"></span><span class="card"></span>
         <span class="card"></span><span class="card"></span><span class="card"></span><span class="card"></span>
       </div>
@@ -74,7 +81,8 @@
   </main>
 
   <noscript>
-    <p class="noscript-notice">The directory needs JavaScript to load its links. You can still open the <a href="data.yaml">source data</a> directly.</p>
+    <p class="noscript-notice">The directory needs JavaScript to load its links. You can still open the <a
+        href="data.yaml">source data</a> directly.</p>
   </noscript>
 
   <dialog id="bookmark-dialog" class="dialog" aria-labelledby="bookmark-dialog-title">
@@ -90,7 +98,8 @@
         </label>
         <label class="dialog-field">
           URL
-          <input class="input" name="url" required maxlength="500" inputmode="url" autocomplete="url" placeholder="https://example.com">
+          <input class="input" name="url" required maxlength="500" inputmode="url" autocomplete="url"
+            placeholder="https://example.com">
         </label>
         <label class="dialog-field">
           Description <small>Optional</small>
@@ -100,7 +109,8 @@
           Icon <small>Optional emoji or image URL</small>
           <input class="input" name="icon" maxlength="500" autocomplete="off" placeholder="✨">
         </label>
-        <p class="field-help col-full">Saved only in this browser. Nothing is uploaded or added to the public directory.</p>
+        <p class="field-help col-full">Saved only in this browser. Nothing is uploaded or added to the public directory.
+        </p>
         <p id="bookmark-form-error" class="alert alert-danger col-full" hidden></p>
       </div>
       <footer class="dialog-footer">
@@ -112,14 +122,15 @@
 
   <footer class="footer flex flex-jc-between flex-center">
     <a class="navbar-brand" href="/">
-      <img class="navbar-brand-mark" src="https://lsong.org/assets/web/icon.png?v=2" alt="" aria-hidden="true" referrerpolicy="no-referrer">
-      <span>Start</span>
+      <img class="navbar-brand-mark" src="https://lsong.org/assets/web/icon.png" alt="" aria-hidden="true"
+        referrerpolicy="no-referrer">
+      <span>lsong.org</span>
     </a>
-    <p>A useful part of lsong.org.</p>
+    <p>Independent software, made with care.</p>
     <nav aria-label="Footer navigation">
       <a href="mailto:hi@lsong.org">Email</a>
-      <a href="https://github.com/lsongdev">GitHub</a>
-      <a href="https://lsong.org">Home</a>
+      <a href="https://lsong.org/terms.html">Terms</a>
+      <a href="https://lsong.org/privacy.html">Privacy</a>
     </nav>
   </footer>
 </body>

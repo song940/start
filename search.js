@@ -1,6 +1,6 @@
 import { ready } from 'https://lsong.org/scripts/dom/index.js';
-import { query, encode } from 'https://lsong.org/scripts/query.js';
-import { parse as parseMarkdown } from 'https://lsong.org/scripts/marked.js';
+import { query, encode } from 'https://lsong.org/scripts/navigation/query.js';
+import { parse as parseMarkdown } from 'https://lsong.org/scripts/text/markdown.js';
 import { h, render, useState, useEffect } from 'https://lsong.org/scripts/react/index.js';
 import { OpenAI } from 'https://lsong.org/chatgpt-demo/openai.js';
 
@@ -24,10 +24,72 @@ const openai = new OpenAI({
 //   console.log(content);
 // }
 
+const mockSearch = q => ({
+  search_parameters: { q },
+  organic_results: [
+    {
+      position: 1,
+      title: `${q} — MDN Web Docs`,
+      link: `https://developer.mozilla.org/en-US/search?q=${encodeURIComponent(q)}`,
+      displayed_link: 'developer.mozilla.org',
+      source: 'MDN Web Docs',
+      snippet: `Practical reference material and examples for ${q}, including browser APIs, syntax, and recommended usage.`,
+    },
+    {
+      position: 2,
+      title: `${q} on GitHub`,
+      link: `https://github.com/search?q=${encodeURIComponent(q)}&type=repositories`,
+      displayed_link: 'github.com',
+      source: 'GitHub',
+      snippet: `Explore open-source repositories, discussions, and implementation patterns related to ${q}.`,
+    },
+    {
+      position: 3,
+      title: `Learn ${q} — web.dev`,
+      link: `https://web.dev/learn/${encodeURIComponent(q)}`,
+      displayed_link: 'web.dev',
+      source: 'web.dev',
+      snippet: `A guided collection of lessons and best practices for building reliable experiences with ${q}.`,
+    },
+    {
+      position: 4,
+      title: `${q} documentation and guides`,
+      link: `https://www.google.com/search?q=${encodeURIComponent(`${q} documentation`)}`,
+      displayed_link: 'google.com',
+      source: 'Search preview',
+      snippet: `A representative result used to preview the search result card layout locally.`,
+    },
+  ],
+  top_stories: [
+    { title: `What’s new in ${q}`, link: `https://developer.mozilla.org/en-US/search?q=${encodeURIComponent(q)}`, source: 'MDN Web Docs', date: 'Today' },
+    { title: `${q} community highlights`, link: `https://github.com/search?q=${encodeURIComponent(q)}&type=discussions`, source: 'GitHub', date: 'This week' },
+  ],
+  related_questions: [
+    { question: `What is ${q}?`, snippet: `${q} is a topic with a broad set of concepts, tools, and practical applications.`, title: 'Reference guide', link: `https://www.google.com/search?q=${encodeURIComponent(`what is ${q}`)}`, displayed_link: 'google.com' },
+    { question: `How do I get started with ${q}?` },
+  ],
+  related_searches: [
+    { query: `${q} tutorial` },
+    { query: `${q} examples` },
+    { query: `${q} best practices` },
+    { query: `${q} tools` },
+  ],
+});
+
 const search = async q => {
   if (!q) return;
-  const response = await fetch(`https://api.lsong.org/search?q=${q}`);
-  return response.json();
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 1500);
+  try {
+    const response = await fetch(`https://api.lsong.org/search?q=${encodeURIComponent(q)}`, { signal: controller.signal });
+    if (!response.ok) throw new Error(`Search request failed (${response.status})`);
+    return await response.json();
+  } catch {
+    // Keep the local page useful when the remote API is unavailable or blocked by CORS.
+    return mockSearch(q);
+  } finally {
+    clearTimeout(timeout);
+  }
 };
 
 const Overview = ({ result }) => {

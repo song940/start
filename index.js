@@ -1,10 +1,9 @@
-import * as yaml from 'https://lsong.org/scripts/yaml.js';
+import * as yaml from 'https://lsong.org/scripts/text/yaml.js';
 import {
   bindDialog,
-  closeDialog,
-  showConfirmDialog,
+  confirmDialog,
   showDialog,
-} from 'https://lsong.org/scripts/dom/dialog.js';
+} from 'https://lsong.org/scripts/dom/dialog.js?v2';
 
 const ICON_COLORS = [
   '#fee2e2', '#ffedd5', '#fef9c3', '#dcfce7', '#dbeafe',
@@ -68,14 +67,14 @@ const loadLocalBookmarks = () => {
 };
 
 const removeLocalBookmark = async bookmark => {
-  const confirmed = await showConfirmDialog(
+  const confirmed = await confirmDialog(
     `Remove “${bookmark.title}” from your local bookmarks?`,
     {
       title: 'Remove bookmark?',
-      yesText: 'Remove',
-      noText: 'Cancel',
-      yesClassName: 'button button-danger',
-      noClassName: 'button button-secondary',
+      confirmText: 'Remove',
+      cancelText: 'Cancel',
+      confirmClass: 'button button-danger',
+      cancelClass: 'button button-secondary',
     },
   );
   if (!confirmed) return;
@@ -249,7 +248,7 @@ const setupBookmarkDialog = () => {
       }
 
       renderDirectory();
-      closeDialog(dialog, 'added');
+      dialog.close('added');
     } catch (cause) {
       error.textContent = cause.message || 'The bookmark could not be added.';
       error.hidden = false;
