@@ -1,5 +1,5 @@
 import { ready } from 'https://lsong.org/scripts/dom/index.js';
-import * as yaml from 'https://lsong.org/scripts/yaml.js';
+import * as yaml from 'https://lsong.org/scripts/text/yaml.js';
 
 ready(async () => {
   const app = document.getElementById('app');
