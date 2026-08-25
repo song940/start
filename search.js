@@ -2,7 +2,7 @@ import { ready } from 'https://lsong.org/scripts/dom/index.js';
 import { query, encode } from 'https://lsong.org/scripts/navigation/query.js';
 import { parse as parseMarkdown } from 'https://lsong.org/scripts/text/markdown.js';
 import { h, render, useState, useEffect } from 'https://lsong.org/scripts/react/index.js';
-import { OpenAI } from 'https://lsong.org/chatgpt-demo/openai.js';
+import { OpenAI } from 'https://lsong.org/chatgpt-demo/openai.js?v5';
 
 const {
   lang,

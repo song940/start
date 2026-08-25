@@ -41,23 +41,6 @@
   }
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  background: var(--color-canvas);
-}
-
-.start-page > header,
-.start-page > main,
-.start-page > footer {
-  width: min(calc(100% - var(--page-gutter) * 2), var(--page-max-width));
-  max-width: none;
-  margin-inline: auto;
-}
-
 .skip-link {
   position: fixed;
   z-index: 10;
@@ -829,41 +812,6 @@ img.link-icon {
   animation: loading 1.4s infinite linear;
 }
 
-.search-page > .start-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.start-page > .footer {
-  gap: 24px;
-  padding: 40px 0 54px;
-  border-top: 1px solid var(--color-border);
-  color: var(--color-text-muted);
-  text-align: left;
-}
-
-.start-page > .footer p {
-  margin: 0;
-  font-size: 13px;
-}
-
-.start-page > .footer nav {
-  display: flex;
-  gap: 18px;
-}
-
-.start-page > .footer nav a {
-  color: var(--color-text-muted);
-  font-size: 13px;
-  text-decoration: none;
-}
-
-.start-page > .footer nav a:hover,
-.start-page > .footer nav a:focus-visible {
-  color: var(--color-text);
-}
-
 .error-page #app h2 {
   max-width: 920px;
   margin: 20px 0 24px;
@@ -909,18 +857,6 @@ img.link-icon {
 }
 
 @media (max-width: 640px) {
-  .search-page > .start-header {
-    align-items: center;
-    flex-wrap: wrap;
-    row-gap: 12px;
-  }
-
-  .search-page > .start-header nav {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-  }
-
   .search-page .search-content {
     padding-top: 46px;
   }
@@ -962,11 +898,6 @@ img.link-icon {
     padding: 12px;
   }
 
-  .search-page > .start-footer {
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-
   .search-help span:not(:first-child) {
     display: none;
   }
@@ -990,25 +921,4 @@ img.link-icon {
   .bookmark-delete {
     opacity: 1;
   }
-
-  .start-page > .footer {
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .start-page > .footer p {
-    display: none;
-  }
-}
-
-@media (min-width: 768px) {
-  .navbar-brand h1::before {
-    content: attr(prefix);
-    font-weight: 400;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .loading-grid .card { animation: none; }
 }
