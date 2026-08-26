@@ -105,55 +105,67 @@ const Overview = ({ result }) => {
   const [done, setDone] = useState(false);
   const [summary, setSummary] = useState('');
   const [error, setError] = useState('');
-  const generateSummary = async () => {
-    const fulltext = result.organic_results?.reduce((fulltext, item, index) => {
-      const text = [item.title, item.snippet, `id: #result-${index}`, item.link].join('\n');
-      return `${fulltext}\n\n[${item.position}]. ${text}`;
-    }, '');
-    const questions = result.related_questions?.reduce((out, q, index) => {
-      return [
-        out,
-        `id: #Q${index + 1}`,
-        `Q: ${q.question}`,
-        `A: ${q.snippet}`,
-        `source: [${q.title}](${q.link})`
-      ].join('\n');
-    }, 'Related Questions:\n');
-    try {
-      setDone(false);
-      setError('');
-      setSummary('');
-      const prompt = `Query: ${result.search_parameters.q}\nSearch Result: ${fulltext}\n\n${questions}`;
-      const userMessage = { role: 'user', content: prompt };
-      const systemMessage = {
-        role: 'system',
-        content: `
-          As a search assistant, your task is to help the user understand the search results by providing a detailed summary.
-          Highlight the key points, relevant facts, and important information found in the search results.
-          When citing links, please use the format <sup>[[1](#result-0)]</sup>.
-          Additionally, offer insights and context where necessary to enhance the user's comprehension.
-          Please use ${lang || 'same language as the query'} and markdown in your response.`
-      };
-      const response = await openai.createChatCompletion({
-        model,
-        messages: [systemMessage, userMessage],
-        stream: true,
-      });
-      for await (const chunk of response) {
-        if (chunk.error && chunk.error.code != 0) {
-          throw new Error(chunk.error.message);
-        }
-        const content = chunk.choices[0]?.delta?.content || '';
-        setSummary(summary => summary + content);
-      }
-    } catch {
-      setError('AI overview is temporarily unavailable. The search results below are still available.');
-    } finally {
-      setDone(true);
-    }
-  };
   useEffect(() => {
+    let aborted = false;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+
+    const generateSummary = async () => {
+      const fulltext = result.organic_results?.reduce((acc, item, index) => {
+        const text = [item.title, item.snippet, `id: #result-${index}`, item.link].join('\n');
+        return `${acc}\n\n[${item.position}]. ${text}`;
+      }, '');
+      const questions = result.related_questions?.reduce((acc, q, index) => {
+        if (!q?.question) return acc;
+        return [
+          acc,
+          `id: #Q${index + 1}`,
+          `Q: ${q.question}`,
+          `A: ${q.snippet || ''}`,
+          `source: [${q.title || ''}](${q.link || ''})`
+        ].join('\n');
+      }, 'Related Questions:\n');
+
+      try {
+        setDone(false);
+        setError('');
+        setSummary('');
+        const prompt = `Query: ${result.search_parameters?.q}\nSearch Result: ${fulltext}\n\n${questions}`;
+        const userMessage = { role: 'user', content: prompt };
+        const systemMessage = {
+          role: 'system',
+          content: `As a search assistant, your task is to help the user understand the search results by providing a detailed summary. Highlight the key points, relevant facts, and important information found in the search results. When citing links, please use the format <sup>[[1](#result-0)]</sup>. Additionally, offer insights and context where necessary to enhance the user's comprehension. Please use ${lang || 'same language as the query'} and markdown in your response.`
+        };
+        const response = await openai.createChatCompletion({
+          model,
+          messages: [systemMessage, userMessage],
+          stream: true,
+          signal: controller.signal,
+        });
+        for await (const chunk of response) {
+          if (aborted) break;
+          if (chunk.error && chunk.error.code !== 0) {
+            throw new Error(chunk.error.message);
+          }
+          const content = chunk.choices?.[0]?.delta?.content || '';
+          setSummary(prev => prev + content);
+        }
+      } catch (err) {
+        if (aborted || err.name === 'AbortError') return;
+        setError('AI overview is temporarily unavailable. The search results below are still available.');
+      } finally {
+        if (!aborted) setDone(true);
+        clearTimeout(timeout);
+      }
+    };
+
     generateSummary();
+
+    return () => {
+      aborted = true;
+      controller.abort();
+      clearTimeout(timeout);
+    };
   }, [result]);
   return h('section', { className: 'search-section overview-section', 'aria-labelledby': 'overview-title' }, [
     h('h2', { id: 'overview-title' }, "Overview"),
