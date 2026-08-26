@@ -24,55 +24,64 @@ const openai = new OpenAI({
 //   console.log(content);
 // }
 
+const searchEngines = [
+  { name: 'Google', host: 'google.com', url: q => `https://www.google.com/search?q=${encodeURIComponent(q)}` },
+  { name: 'Bing', host: 'bing.com', url: q => `https://www.bing.com/search?q=${encodeURIComponent(q)}` },
+  { name: 'DuckDuckGo', host: 'duckduckgo.com', url: q => `https://duckduckgo.com/?q=${encodeURIComponent(q)}` },
+  { name: 'Baidu', host: 'baidu.com', url: q => `https://www.baidu.com/s?wd=${encodeURIComponent(q)}` },
+  { name: 'Yahoo', host: 'yahoo.com', url: q => `https://search.yahoo.com/search?p=${encodeURIComponent(q)}` },
+];
+
 const mockSearch = q => ({
   search_parameters: { q },
-  organic_results: [
-    {
-      position: 1,
-      title: `${q} — MDN Web Docs`,
-      link: `https://developer.mozilla.org/en-US/search?q=${encodeURIComponent(q)}`,
-      displayed_link: 'developer.mozilla.org',
-      source: 'MDN Web Docs',
-      snippet: `Practical reference material and examples for ${q}, including browser APIs, syntax, and recommended usage.`,
-    },
-    {
-      position: 2,
-      title: `${q} on GitHub`,
-      link: `https://github.com/search?q=${encodeURIComponent(q)}&type=repositories`,
-      displayed_link: 'github.com',
-      source: 'GitHub',
-      snippet: `Explore open-source repositories, discussions, and implementation patterns related to ${q}.`,
-    },
-    {
-      position: 3,
-      title: `Learn ${q} — web.dev`,
-      link: `https://web.dev/learn/${encodeURIComponent(q)}`,
-      displayed_link: 'web.dev',
-      source: 'web.dev',
-      snippet: `A guided collection of lessons and best practices for building reliable experiences with ${q}.`,
-    },
-    {
-      position: 4,
-      title: `${q} documentation and guides`,
-      link: `https://www.google.com/search?q=${encodeURIComponent(`${q} documentation`)}`,
-      displayed_link: 'google.com',
-      source: 'Search preview',
-      snippet: `A representative result used to preview the search result card layout locally.`,
-    },
-  ],
+  organic_results: searchEngines.map((engine, index) => ({
+    position: index + 1,
+    title: `Search ${q} on ${engine.name}`,
+    link: engine.url(q),
+    displayed_link: engine.host,
+    source: engine.name,
+    snippet: `Search for "${q}" using ${engine.name}.`,
+  })),
   top_stories: [
-    { title: `What’s new in ${q}`, link: `https://developer.mozilla.org/en-US/search?q=${encodeURIComponent(q)}`, source: 'MDN Web Docs', date: 'Today' },
-    { title: `${q} community highlights`, link: `https://github.com/search?q=${encodeURIComponent(q)}&type=discussions`, source: 'GitHub', date: 'This week' },
+    { title: `Search ${q} on Google`, link: `https://www.google.com/search?q=${encodeURIComponent(q)}`, source: 'Google', date: 'Today' },
+    { title: `Search ${q} on Bing`, link: `https://www.bing.com/search?q=${encodeURIComponent(q)}`, source: 'Bing', date: 'This week' },
   ],
   related_questions: [
-    { question: `What is ${q}?`, snippet: `${q} is a topic with a broad set of concepts, tools, and practical applications.`, title: 'Reference guide', link: `https://www.google.com/search?q=${encodeURIComponent(`what is ${q}`)}`, displayed_link: 'google.com' },
-    { question: `How do I get started with ${q}?` },
+    {
+      question: `What is ${q}?`,
+      snippet: `${q} is a topic with a broad set of concepts, tools, and practical applications.`,
+      title: 'Search on Google',
+      link: `https://www.google.com/search?q=${encodeURIComponent(`what is ${q}`)}`,
+      displayed_link: 'google.com',
+    },
+    {
+      question: `How to use ${q}?`,
+      snippet: `Find step-by-step guides, common patterns, and recommended ways to work with ${q}.`,
+      title: 'Search on Bing',
+      link: `https://www.bing.com/search?q=${encodeURIComponent(`how to use ${q}`)}`,
+      displayed_link: 'bing.com',
+    },
+    {
+      question: `Where to find ${q} documentation?`,
+      snippet: `Browse official docs, API references, and release notes for ${q}.`,
+      title: 'Search on DuckDuckGo',
+      link: `https://duckduckgo.com/?q=${encodeURIComponent(`${q} documentation`)}`,
+      displayed_link: 'duckduckgo.com',
+    },
+    {
+      question: `What are some ${q} examples?`,
+      snippet: `Discover real-world code samples and starter projects using ${q}.`,
+      title: 'Search on Baidu',
+      link: `https://www.baidu.com/s?wd=${encodeURIComponent(`${q} examples`)}`,
+      displayed_link: 'baidu.com',
+    },
   ],
   related_searches: [
     { query: `${q} tutorial` },
+    { query: `${q} documentation` },
+    { query: `${q} github` },
     { query: `${q} examples` },
     { query: `${q} best practices` },
-    { query: `${q} tools` },
   ],
 });
 
