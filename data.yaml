@@ -155,6 +155,7 @@
       url: "https://lsong.org/ffmpeg-demo"
     - title: "TV"
       url: "https://tv.lsong.org"
+      icon: "📺"
 
 - name: "Lsong’s Games"
   links:
@@ -176,6 +177,7 @@
       url: "https://lsong.org/puzzle"
     - title: "水色工坊"
       url: "https://lsong.org/water-sort-puzzle"
+      icon: "💧"
     - title: "Dinosaur Game"
       icon: "🦕"
       url: "https://lsong.org/chromium-runner-game"
