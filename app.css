@@ -93,44 +93,32 @@ kbd {
   padding: clamp(66px, 9vw, 100px) 0;
 }
 
-.directory-header,
 .folder-header {
   display: flex;
   align-items: end;
   justify-content: space-between;
   gap: 24px;
+  margin-bottom: 18px;
 }
 
-.directory-header {
-  margin-bottom: 50px;
-}
-
-.directory-header h2 {
-  margin: 10px 0 0;
+.folder-header h3 {
+  margin: 0;
   font-family: var(--font-family-heading);
-  font-size: clamp(36px, 5vw, 54px);
-  font-weight: 650;
-  line-height: 1;
-  letter-spacing: -0.055em;
+  font-size: 20px;
+  font-weight: 640;
+  letter-spacing: -0.035em;
 }
 
-.directory-header > p,
-.folder-header span {
+.folder-count {
   margin: 0;
   color: var(--color-text-muted);
   font-size: 12px;
 }
 
-.directory-actions {
+.folder-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
-}
-
-.directory-actions p {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: 12px;
+  gap: 12px;
 }
 
 .bookmark-folder {
@@ -141,18 +129,6 @@ kbd {
 .bookmark-folder[hidden],
 .bookmark-card[hidden] {
   display: none;
-}
-
-.folder-header {
-  margin-bottom: 18px;
-}
-
-.folder-header h3 {
-  margin: 0;
-  font-family: var(--font-family-heading);
-  font-size: 20px;
-  font-weight: 640;
-  letter-spacing: -0.035em;
 }
 
 .bookmark-grid {
@@ -905,17 +881,6 @@ img.link-icon {
   .bookmark-link {
     min-height: 76px;
     padding: 14px;
-  }
-
-  .directory-header {
-    align-items: start;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .directory-actions {
-    width: 100%;
-    justify-content: space-between;
   }
 
   .bookmark-delete {

@@ -126,15 +126,33 @@ const createFolder = (folder, folderIndex) => {
   const section = document.createElement('section');
   section.className = 'bookmark-folder';
   section.dataset.folder = folder.name.toLowerCase();
+  section.dataset.local = folder.local ? 'true' : '';
   section.id = slugify(folder.name);
 
   const header = document.createElement('header');
   header.className = 'folder-header';
   const title = document.createElement('h3');
   title.textContent = folder.name;
+  header.append(title);
+
   const count = document.createElement('span');
+  count.className = 'folder-count';
   count.textContent = `${folder.links?.length || 0} links`;
-  header.append(title, count);
+
+  if (folder.local) {
+    const actions = document.createElement('div');
+    actions.className = 'folder-actions';
+    const addButton = document.createElement('button');
+    addButton.type = 'button';
+    addButton.id = 'add-bookmark';
+    addButton.className = 'button button-secondary';
+    addButton.textContent = '+';
+    addButton.addEventListener('click', openBookmarkDialog);
+    actions.append(count, addButton);
+    header.append(actions);
+  } else {
+    header.append(count);
+  }
 
   const list = document.createElement('ul');
   list.className = 'bookmark-grid grid grid-cols-4 md-grid-cols-3 sm-grid-cols-2';
@@ -154,9 +172,7 @@ const fetchData = async () => {
 
 const filterBookmarks = () => {
   const input = document.querySelector('#search-input');
-  const count = document.querySelector('#directory-count');
   const empty = document.querySelector('#empty-state');
-  const total = document.querySelectorAll('.bookmark-card').length;
   const query = input.value.trim().toLowerCase();
   let visible = 0;
 
@@ -167,11 +183,10 @@ const filterBookmarks = () => {
       card.hidden = !match;
       if (match) folderVisible += 1;
     });
-    folder.hidden = folderVisible === 0;
+    folder.hidden = folderVisible === 0 && !folder.dataset.local;
     visible += folderVisible;
   });
 
-  count.textContent = query ? `${visible} of ${total} links` : `${total} links`;
   empty.hidden = visible !== 0;
 };
 
@@ -196,10 +211,10 @@ const setupFiltering = () => {
 
 const renderDirectory = () => {
   const app = document.querySelector('#app');
-  const folders = [...publicFolders];
-  if (localBookmarks.length) {
-    folders.unshift({ name: 'My Bookmarks', links: localBookmarks, local: true });
-  }
+  const folders = [
+    { name: 'My Bookmarks', links: localBookmarks, local: true },
+    ...publicFolders,
+  ];
 
   const fragment = document.createDocumentFragment();
   folders.forEach((folder, index) => fragment.append(createFolder(folder, index)));
@@ -214,17 +229,20 @@ const normalizeUrl = value => {
   return url.href;
 };
 
+const openBookmarkDialog = () => {
+  const dialog = document.querySelector('#bookmark-dialog');
+  const form = document.querySelector('#bookmark-form');
+  const error = document.querySelector('#bookmark-form-error');
+  form.reset();
+  error.hidden = true;
+  showDialog(dialog, { initialFocus: '[name="title"]' });
+};
+
 const setupBookmarkDialog = () => {
   const dialog = document.querySelector('#bookmark-dialog');
   const form = document.querySelector('#bookmark-form');
   const error = document.querySelector('#bookmark-form-error');
   bindDialog(dialog);
-
-  document.querySelector('#add-bookmark').addEventListener('click', () => {
-    form.reset();
-    error.hidden = true;
-    showDialog(dialog, { initialFocus: '[name="title"]' });
-  });
 
   form.addEventListener('submit', event => {
     event.preventDefault();
@@ -259,7 +277,6 @@ const setupBookmarkDialog = () => {
 const render = async () => {
   const app = document.querySelector('#app');
   const loading = document.querySelector('#loading');
-  const count = document.querySelector('#directory-count');
 
   try {
     publicFolders = await fetchData();
@@ -268,7 +285,6 @@ const render = async () => {
     setupBookmarkDialog();
     renderDirectory();
   } catch (error) {
-    count.textContent = 'Unable to load links';
     const message = document.createElement('p');
     message.className = 'alert alert-danger';
     message.textContent = 'The directory could not be loaded. Please try again.';

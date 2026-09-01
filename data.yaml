@@ -156,6 +156,12 @@
     - title: "TV"
       url: "https://tv.lsong.org"
       icon: "📺"
+    - title: "Camera"
+      url: https://lsong.org/camera
+      icon: "📷"
+    - title: Sudoku
+      url: https://lsong.org/sudoku
+      icon: "🧩"
 
 - name: "Lsong’s Games"
   links:
