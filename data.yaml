@@ -121,16 +121,10 @@
     - title: WebESP
       icon: "🔌"
       url: https://lsong.org/webesp
-    - title: "Piano"
-      icon: "🎹"
-      url: https://lsong.org/piano
-    - title: "EAR-DRUMS"
-      icon: "🟩"
-      url: https://lsong.org/drumpad
-    - title: "Calendar"
+    - title: Calendar
       icon: "📅"
       url: https://lsong.org/calendar
-    - title: "Wallet"
+    - title: Wallet
       icon: "💰"
       url: https://lsong.org/wallet
     - title: "Wenjuan"
@@ -159,9 +153,12 @@
     - title: "Camera"
       url: https://lsong.org/camera
       icon: "📷"
-    - title: Sudoku
-      url: https://lsong.org/sudoku
-      icon: "🧩"
+    - title: "Audio Lab"
+      url: https://lsong.org/audio-lab
+      icon: "🎧"
+    - title: "Image Lab"
+      url: https://lsong.org/image-lab
+      icon: "🎨"
 
 - name: "Lsong’s Games"
   links:
@@ -184,6 +181,9 @@
     - title: "水色工坊"
       url: "https://lsong.org/water-sort-puzzle"
       icon: "💧"
+    - title: Sudoku
+      url: https://lsong.org/sudoku
+      icon: "🧩"
     - title: "Dinosaur Game"
       icon: "🦕"
       url: "https://lsong.org/chromium-runner-game"
