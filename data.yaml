@@ -27,12 +27,10 @@
       description: Your name, your own private inbox.
       url: "https://mail.lsong.org"
       icon: "✉️"
-    - title: Mori
-      category: Independent market
-      description: A small marketplace for independent goods.
-      url: "https://mori.lsong.org"
-      icon: "🌿"
-      theme: warm
+    - title: Chat
+      icon: "💬"
+      url: https://chat.lsong.org
+      description: A simple chat service for your team or community.
     - title: Files
       category: Storage
       description: A simple file hosting service for your personal files.
@@ -58,6 +56,12 @@
       description: One API for the AI models and SDKs you already know.
       url: "https://models.lsong.org"
       icon: "✦"
+    - title: Mori
+      category: Independent market
+      description: A small marketplace for independent goods.
+      url: "https://mori.lsong.org"
+      icon: "🌿"
+      theme: warm
     - title: Miya Agent
       url: "https://miya.lsong.org"
       icon: "https://raw.githubusercontent.com/lsongdev/miya-desktop/master/build/appicon.png"
@@ -112,9 +116,6 @@
     - title: Greenlock
       icon: "🔒"
       url: https://lsong.org/greenlock
-    - title: Chat
-      icon: "💬"
-      url: https://lsong.org/chat
     - title: Clash
       icon: "🐱"
       url: https://lsong.org/clash-demo
